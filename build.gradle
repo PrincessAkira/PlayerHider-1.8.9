@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: "net.minecraftforge.gradle.forge"
 
-version = "Release"
+version = modVersion
 group = modGroup
 archivesBaseName = 'PlayerHider'
 
