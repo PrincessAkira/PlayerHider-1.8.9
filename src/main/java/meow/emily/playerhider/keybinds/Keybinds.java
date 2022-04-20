@@ -6,14 +6,10 @@ import org.lwjgl.input.Keyboard;
 
 public class Keybinds {
     public static KeyBinding toggleemily;
-    public static KeyBinding opengui;
 
     public static void register() {
         // Toggle Mod
         toggleemily = new KeyBinding("key.toggleemily", Keyboard.KEY_NONE, "PlayerHider");
         ClientRegistry.registerKeyBinding(toggleemily);
-
-        // opengui = new KeyBinding("key.opengui", Keyboard.KEY_NONE, "PlayerHider");
-        // ClientRegistry.registerKeyBinding(opengui);
     }
 }
