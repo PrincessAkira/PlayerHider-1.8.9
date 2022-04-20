@@ -10,7 +10,7 @@ To use keybinds change them in Settings > Controls > PlayerHider
 Default keybinds are as follows:
 
 ```
-Toggle Mod: V
+Toggle Mod: Not Set
 ```
 
 ## Need Help
