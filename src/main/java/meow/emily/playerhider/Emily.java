@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 public class Emily {
     public static final String MODID = "PH";
     public static final String NAME = "PlayerHider";
-    public static final String VERSION = "1.2";
+    public static final String VERSION = "1.3";
     public static final Logger LOGGER = LogManager.getLogger("PlayerHider");
     public static final String PREFIX = "PH";
     public static Minecraft mc = Minecraft.getMinecraft();

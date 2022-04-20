@@ -11,6 +11,5 @@ public class Keybinds {
         // Toggle Mod
         togglesrp = new KeyBinding("key.togglesrp", Keyboard.KEY_NONE, "PlayerHider");
         ClientRegistry.registerKeyBinding(togglesrp);
-
     }
 }

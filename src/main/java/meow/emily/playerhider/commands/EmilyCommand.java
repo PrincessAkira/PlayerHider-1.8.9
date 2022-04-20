@@ -49,7 +49,6 @@ public class EmilyCommand extends CommandBase {
             if (args[0].equalsIgnoreCase("add")) {
                 ConfigHandler.playersToRender += args[1] + ",";
                 ConfigHandler.syncFromFields();
-                //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + Emily.PREFIX + ChatFormatting.WHITE + "]" + " Added player to be hidden"));
             } else if (args[0].equalsIgnoreCase("remove")) {
                 String[] localNames = ConfigHandler.playersToRender.split(",");
                 StringBuilder namesToSave = new StringBuilder();
@@ -59,15 +58,12 @@ public class EmilyCommand extends CommandBase {
                     }
                 }
                 ConfigHandler.playersToRender = namesToSave.toString();
-
                 ConfigHandler.syncFromFields();
-                //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + Emily.PREFIX + ChatFormatting.WHITE + "]" +" Removed player from being Hidden"));
             } else if (args[0].equalsIgnoreCase("blacklist")) {
                 try {
                     if (args[1].equalsIgnoreCase("add")) {
                         ConfigHandler.blacklistedPlayers += args[2] + ",";
                         ConfigHandler.syncFromFields();
-                        //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + Emily.PREFIX + ChatFormatting.WHITE + "]" +" Added Player to blacklist"));
                     } else if (args[1].equalsIgnoreCase("remove")) {
                         String[] localNames = ConfigHandler.blacklistedPlayers.split(",");
                         StringBuilder namesToSave = new StringBuilder();
@@ -77,10 +73,7 @@ public class EmilyCommand extends CommandBase {
                             }
                         }
                         ConfigHandler.blacklistedPlayers = namesToSave.toString();
-
                         ConfigHandler.syncFromFields();
-
-                        //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + Emily.PREFIX + ChatFormatting.WHITE + "]" +" Removed player from blacklist"));
                     }
                 } catch (Exception ignored) {
                 } finally {
@@ -90,20 +83,14 @@ public class EmilyCommand extends CommandBase {
                     } else {
                         str = "none";
                     }
-
-                    //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + Emily.PREFIX + ChatFormatting.WHITE + "]" +" Current blacklisted players are " + ChatFormatting.BOLD + str));
                 }
-
             } else if (args[0].equalsIgnoreCase("toggle")) {
-
                 if (ConfigHandler.renderPlayers) {
                     ConfigHandler.renderPlayers = false;
                     ConfigHandler.syncFromFields();
-                    //player.addChatMessage(new ChatComponentText(ChatFormatting.AQUA + Emily.PREFIX + ChatFormatting.RED + " Rendering players is now " + ChatFormatting.BOLD + "off"));
                 } else {
                     ConfigHandler.renderPlayers = true;
                     ConfigHandler.syncFromFields();
-                    //player.addChatMessage(new ChatComponentText(ChatFormatting.AQUA + Emily.PREFIX + ChatFormatting.GREEN + " Rendering players is now " + ChatFormatting.BOLD + "on"));
                 }
 
             } else if (args[0].equalsIgnoreCase("help")) {
