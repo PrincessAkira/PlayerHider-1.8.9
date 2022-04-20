@@ -40,7 +40,7 @@ public class SRPCommand extends CommandBase {
         return ChatFormatting.DARK_BLUE + "------------" + ChatFormatting.GREEN + "[SRP]" + ChatFormatting.DARK_BLUE + "------------" + "\n" +
                 ChatFormatting.RED + "+" + ChatFormatting.BLUE + " /srp - Open GUI" + "\n" +
                 ChatFormatting.RED + "+" + ChatFormatting.BLUE + " /srp add/remove - Add/remove players" + "\n" +
-                ChatFormatting.RED + "+" + ChatFormatting.BLUE + " /srp whitelist add/remove/list - Whitelist cmds" + "\n" +
+                ChatFormatting.RED + "+" + ChatFormatting.BLUE + " /srp blacklist add/remove/list - blacklist cmds" + "\n" +
                 ChatFormatting.RED + "+" + ChatFormatting.BLUE + " /srp toggle - Toggles the mod on/off" + "\n" +
                 ChatFormatting.RED + "+" + ChatFormatting.BLUE + " /srp list - Shows current rendered players" + "\n" +
                 ChatFormatting.DARK_BLUE + "------------------------------------------";
@@ -66,7 +66,7 @@ public class SRPCommand extends CommandBase {
 
                 ConfigHandler.syncFromFields();
                 player.addChatMessage(new ChatComponentText(ChatFormatting.GREEN + "[SRP]" + ChatFormatting.BLUE + " Removed player from being rendered " + ChatFormatting.BOLD + args[1]));
-            } else if(args[0].equalsIgnoreCase("whitelist")){
+            } else if(args[0].equalsIgnoreCase("blacklist")){
                 try {
                     if(args[1].equalsIgnoreCase("add")){
                         ConfigHandler.whitelistedPlayers += args[2] + ",";
@@ -114,7 +114,7 @@ public class SRPCommand extends CommandBase {
                         str = "none";
                     }
 
-                    player.addChatMessage(new ChatComponentText(ChatFormatting.GREEN + "[SRP]" + ChatFormatting.BLUE + " Current whitelisted players are " + ChatFormatting.BOLD + str));
+                    player.addChatMessage(new ChatComponentText(ChatFormatting.GREEN + "[SRP]" + ChatFormatting.BLUE + " Current blacklisted players are " + ChatFormatting.BOLD + str));
                 }
 
             } else if (args[0].equalsIgnoreCase("toggle")) {

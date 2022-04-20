@@ -24,13 +24,13 @@ public class SRPEventHandler {
                 e.setCanceled(true);
                 for (int i = 0; i < localPlayersToRender.length; i++) {
                     if(localPlayersToRender[i].equals(enPlayer.getGameProfile().getName()) || enPlayer.equals(Minecraft.getMinecraft().thePlayer)) {
-                        e.setCanceled(false);
+                        e.setCanceled(true);
                     }
                 }
 
                 for (int i = 0; i < whitelistedPlayers.length; i++) {
                     if(whitelistedPlayers[i].equals(enPlayer.getGameProfile().getName()) || enPlayer.equals(Minecraft.getMinecraft().thePlayer)) {
-                        e.setCanceled(false);
+                        e.setCanceled(true);
                     }
                 }
             }
