@@ -10,7 +10,7 @@ import java.io.File;
 public class ConfigHandler {
     public static boolean renderPlayers;
     public static String playersToRender;
-    public static String whitelistedPlayers;
+    public static String blacklistedPlayers;
     private static Configuration config = null;
 
     public static void preInit() {
@@ -25,10 +25,6 @@ public class ConfigHandler {
 
     public static void syncFromFiles() {
         syncConfig(true, true);
-    }
-
-    public static void syncFromGui() {
-        syncConfig(false, true);
     }
 
     public static void syncFromFields() {
@@ -46,12 +42,12 @@ public class ConfigHandler {
         if (readFieldsFromConfig) {
             renderPlayers = propertyRenderPlayers.getBoolean();
             playersToRender = propertyPlayersToRender.getString();
-            whitelistedPlayers = propertyWhitelistedPlayers.getString();
+            blacklistedPlayers = propertyWhitelistedPlayers.getString();
         }
 
         propertyRenderPlayers.set(renderPlayers);
         propertyPlayersToRender.set(playersToRender);
-        propertyWhitelistedPlayers.set(whitelistedPlayers);
+        propertyWhitelistedPlayers.set(blacklistedPlayers);
 
         if (config.hasChanged())
             config.save();

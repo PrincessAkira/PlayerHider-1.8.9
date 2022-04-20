@@ -9,9 +9,8 @@ import java.util.List;
 
 public class OnlinePlayers {
     public static String[] getListOfPlayerUsernames() {
-        String[] users = null;
         Collection<NetworkPlayerInfo> players = Emily.mc.getNetHandler().getPlayerInfoMap();
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         for (NetworkPlayerInfo info : players)
             list.add(info.getGameProfile().getName());
         return list.toArray(new String[0]);

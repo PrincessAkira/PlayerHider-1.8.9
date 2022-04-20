@@ -65,18 +65,18 @@ public class EmilyCommand extends CommandBase {
             } else if (args[0].equalsIgnoreCase("blacklist")) {
                 try {
                     if (args[1].equalsIgnoreCase("add")) {
-                        ConfigHandler.whitelistedPlayers += args[2] + ",";
+                        ConfigHandler.blacklistedPlayers += args[2] + ",";
                         ConfigHandler.syncFromFields();
                         //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + Emily.PREFIX + ChatFormatting.WHITE + "]" +" Added Player to blacklist"));
                     } else if (args[1].equalsIgnoreCase("remove")) {
-                        String[] localNames = ConfigHandler.whitelistedPlayers.split(",");
+                        String[] localNames = ConfigHandler.blacklistedPlayers.split(",");
                         StringBuilder namesToSave = new StringBuilder();
                         for (String localName : localNames) {
                             if (!args[2].equals(localName)) {
                                 namesToSave.append(localName).append(",");
                             }
                         }
-                        ConfigHandler.whitelistedPlayers = namesToSave.toString();
+                        ConfigHandler.blacklistedPlayers = namesToSave.toString();
 
                         ConfigHandler.syncFromFields();
 
@@ -120,7 +120,7 @@ public class EmilyCommand extends CommandBase {
             return getListOfStringsMatchingLastWord(args, "add", "remove", "toggle", "blacklist", "help");
         } else if (args.length >= 2) {
             String[] inConfig = ConfigHandler.playersToRender.split(",");
-            String[] whitelist = ConfigHandler.whitelistedPlayers.split(",");
+            String[] whitelist = ConfigHandler.blacklistedPlayers.split(",");
             String[] onlinePlayersLobby = OnlinePlayers.getListOfPlayerUsernames();
             if (args[0].equalsIgnoreCase("remove")) {
                 return getListOfStringsMatchingLastWord(args, inConfig);

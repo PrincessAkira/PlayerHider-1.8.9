@@ -5,11 +5,12 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.lwjgl.input.Keyboard;
 
 public class Keybinds {
-    public static KeyBinding toggleemily;
+    public static KeyBinding togglesrp;
 
     public static void register() {
         // Toggle Mod
-        toggleemily = new KeyBinding("key.toggleemily", Keyboard.KEY_NONE, "PlayerHider");
-        ClientRegistry.registerKeyBinding(toggleemily);
+        togglesrp = new KeyBinding("key.togglesrp", Keyboard.KEY_NONE, "PlayerHider");
+        ClientRegistry.registerKeyBinding(togglesrp);
+
     }
 }
