@@ -17,7 +17,6 @@ import java.util.List;
 
 public class SRPCommand extends CommandBase {
 
-
     /**
      * Gets the name of the command
      */
@@ -41,9 +40,8 @@ public class SRPCommand extends CommandBase {
         return ChatFormatting.WHITE + "------------" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "------------" + "\n" +
                // ChatFormatting.RED + "+" + ChatFormatting.BLUE + " /ph - Open GUI" + "\n" +
                 ChatFormatting.RED + "+" + ChatFormatting.WHITE + " /ph add/remove - Add/remove players" + "\n" +
-                ChatFormatting.RED + "+" + ChatFormatting.WHITE + " /ph blacklist add/remove/list - blacklist cmds" + "\n" +
+                ChatFormatting.RED + "+" + ChatFormatting.WHITE + " /ph blacklist add/remove - blacklist cmds" + "\n" +
                 ChatFormatting.RED + "+" + ChatFormatting.WHITE + " /ph toggle - Toggles the mod on/off" + "\n" +
-                ChatFormatting.RED + "+" + ChatFormatting.WHITE + " /ph list - Shows current rendered players" + "\n" +
                 ChatFormatting.WHITE + "------------------------------------------";
     }
 
@@ -54,60 +52,40 @@ public class SRPCommand extends CommandBase {
             if (args[0].equalsIgnoreCase("add")) {
                 ConfigHandler.playersToRender += args[1] + ",";
                 ConfigHandler.syncFromFields();
-                player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" + " Added player to be rendered " + ChatFormatting.BOLD + args[1]));
+                //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" + " Added player to be hidden"));
             } else if (args[0].equalsIgnoreCase("remove")) {
                 String[] localNames = ConfigHandler.playersToRender.split(",");
-                String namesToSave = "";
-                for (int i = 0; i < localNames.length; i++) {
-                    if(!args[1].equals(localNames[i])){
-                        namesToSave += localNames[i] + ",";
+                StringBuilder namesToSave = new StringBuilder();
+                for (String localName : localNames) {
+                    if (!args[1].equals(localName)) {
+                        namesToSave.append(localName).append(",");
                     }
                 }
-                ConfigHandler.playersToRender = namesToSave;
+                ConfigHandler.playersToRender = namesToSave.toString();
 
                 ConfigHandler.syncFromFields();
-                player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Removed player from being rendered " + ChatFormatting.BOLD + args[1]));
+                //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Removed player from being Hidden"));
             } else if(args[0].equalsIgnoreCase("blacklist")){
                 try {
                     if(args[1].equalsIgnoreCase("add")){
                         ConfigHandler.whitelistedPlayers += args[2] + ",";
                         ConfigHandler.syncFromFields();
-                        player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Added player to blacklist " + ChatFormatting.BOLD + args[2]));
-                        return;
+                        //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Added Player to blacklist"));
                     } else if(args[1].equalsIgnoreCase("remove")) {
                         String[] localNames = ConfigHandler.whitelistedPlayers.split(",");
-                        String namesToSave = "";
-                        for (int i = 0; i < localNames.length; i++) {
-                            if (!args[2].equals(localNames[i])) {
-                                namesToSave += localNames[i] + ",";
+                        StringBuilder namesToSave = new StringBuilder();
+                        for (String localName : localNames) {
+                            if (!args[2].equals(localName)) {
+                                namesToSave.append(localName).append(",");
                             }
                         }
-                        ConfigHandler.whitelistedPlayers = namesToSave;
+                        ConfigHandler.whitelistedPlayers = namesToSave.toString();
 
                         ConfigHandler.syncFromFields();
 
-                        player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Removed player from blacklist " + ChatFormatting.BOLD + args[2]));
-                        return;
-                    } else if(args[1].equalsIgnoreCase("list")) {
-                        String str = ConfigHandler.playersToRender;
-                        if(!str.isEmpty()){
-                            str = str.substring(0, str.length() -1);
-                        } else {
-                            str = "none";
-                        }
-
-                        player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Current blackisted players are " + ChatFormatting.BOLD + str));
-                    } else {
-                        String str = ConfigHandler.playersToRender;
-                        if(!str.isEmpty()){
-                            str = str.substring(0, str.length() -1);
-                        } else {
-                            str = "none";
-                        }
-
-                        player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Current blacklisted players are " + ChatFormatting.BOLD + str));
+                        //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Removed player from blacklist"));
                     }
-                } catch(Exception e){} finally {
+                } catch(Exception ignored){} finally {
                     String str = ConfigHandler.playersToRender;
                     if(!str.isEmpty()){
                         str = str.substring(0, str.length() -1);
@@ -115,7 +93,7 @@ public class SRPCommand extends CommandBase {
                         str = "none";
                     }
 
-                    player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Current blacklisted players are " + ChatFormatting.BOLD + str));
+                    //player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Current blacklisted players are " + ChatFormatting.BOLD + str));
                 }
 
             } else if (args[0].equalsIgnoreCase("toggle")) {
@@ -123,22 +101,13 @@ public class SRPCommand extends CommandBase {
                 if(ConfigHandler.renderPlayers){
                     ConfigHandler.renderPlayers = false;
                     ConfigHandler.syncFromFields();
-                    player.addChatMessage(new ChatComponentText(ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.RED + " Rendering players is now " + ChatFormatting.BOLD + "off"));
+                    //player.addChatMessage(new ChatComponentText(ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.RED + " Rendering players is now " + ChatFormatting.BOLD + "off"));
                 } else {
                     ConfigHandler.renderPlayers = true;
                     ConfigHandler.syncFromFields();
-                    player.addChatMessage(new ChatComponentText(ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.GREEN + " Rendering players is now " + ChatFormatting.BOLD + "on"));
+                    //player.addChatMessage(new ChatComponentText(ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.GREEN + " Rendering players is now " + ChatFormatting.BOLD + "on"));
                 }
 
-            } else if (args[0].equalsIgnoreCase("list")) {
-                String str = ConfigHandler.playersToRender;
-                if(!str.isEmpty()){
-                    str = str.substring(0, str.length() -1);
-                } else {
-                    str = "none";
-                }
-
-                player.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" +" Current hidden players are " + ChatFormatting.BOLD + str));
             } else if (args[0].equalsIgnoreCase("help")) {
                 player.addChatMessage(new ChatComponentText(getCommandUsage(sender)));
             } else {
@@ -153,7 +122,7 @@ public class SRPCommand extends CommandBase {
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
         if (args.length == 1) {
-            return getListOfStringsMatchingLastWord(args, "add","remove","toggle","blacklist","list","help");
+            return getListOfStringsMatchingLastWord(args, "add","remove","toggle","blacklist","help");
         } else if (args.length >= 2) {
             String[] inConfig = ConfigHandler.playersToRender.split(",");
             String[] whitelist = ConfigHandler.whitelistedPlayers.split(",");
@@ -170,7 +139,7 @@ public class SRPCommand extends CommandBase {
                 } else if(args[1].equalsIgnoreCase("remove")){
                     return getListOfStringsMatchingLastWord(args, "blacklist");
                 } else {
-                    return getListOfStringsMatchingLastWord(args, "add","remove","list");
+                    return getListOfStringsMatchingLastWord(args, "add","remove");
                 }
             }
         }

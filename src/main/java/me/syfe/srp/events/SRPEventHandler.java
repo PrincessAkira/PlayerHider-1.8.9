@@ -17,20 +17,19 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 public class SRPEventHandler {
     @SubscribeEvent
     public void onPrePlayerRender(RenderPlayerEvent.Pre e){
-        if(!ConfigHandler.renderPlayers) {
+        EntityPlayer enPlayer = e.entityPlayer;
+        if(!ConfigHandler.renderPlayers && !enPlayer.equals(Minecraft.getMinecraft().thePlayer))  {
             String[] localPlayersToRender = ConfigHandler.playersToRender.split(",");
             String[] whitelistedPlayers = ConfigHandler.whitelistedPlayers.split(",");
-            EntityPlayer enPlayer = e.entityPlayer;
             if(!Utils.isNPC(enPlayer)){
                 e.setCanceled(false);
-                for (int i = 0; i < localPlayersToRender.length; i++) {
-                    if(localPlayersToRender[i].equals(enPlayer.getGameProfile().getName()) || enPlayer.equals(Minecraft.getMinecraft().thePlayer)) {
+                for (String s : localPlayersToRender) {
+                    if (s.equals(enPlayer.getGameProfile().getName())) {
                         e.setCanceled(true);
                     }
                 }
-
-                for (int i = 0; i < whitelistedPlayers.length; i++) {
-                    if(whitelistedPlayers[i].equals(enPlayer.getGameProfile().getName()) || enPlayer.equals(Minecraft.getMinecraft().thePlayer)) {
+                for (String whitelistedPlayer : whitelistedPlayers) {
+                    if (whitelistedPlayer.equals(enPlayer.getGameProfile().getName())) {
                         e.setCanceled(true);
                     }
                 }
@@ -44,11 +43,11 @@ public class SRPEventHandler {
             if(ConfigHandler.renderPlayers){
                 ConfigHandler.renderPlayers = false;
                 ConfigHandler.syncFromFields();
-                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" + " Rendering players is now " + ChatFormatting.BOLD + ChatFormatting.DARK_RED + "off"));
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" + " Blacklisted Players are now " + ChatFormatting.BOLD + ChatFormatting.DARK_RED + "off"));
             } else {
                 ConfigHandler.renderPlayers = true;
                 ConfigHandler.syncFromFields();
-                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" + " Rendering players is now " + ChatFormatting.BOLD + ChatFormatting.GREEN + "on"));
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" + " Blacklisted Players are now " + ChatFormatting.BOLD + ChatFormatting.GREEN + "on"));
             }
         }
         //if(Keybinds.opengui.isPressed()){

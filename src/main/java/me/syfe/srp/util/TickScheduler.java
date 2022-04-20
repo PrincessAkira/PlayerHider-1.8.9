@@ -11,7 +11,7 @@ public class TickScheduler {
 
     public static final TickScheduler INSTANCE = new TickScheduler();
 
-    private List<Task> items = new ArrayList<>();
+    private final List<Task> items = new ArrayList<>();
 
     private TickScheduler() {
         MinecraftForge.EVENT_BUS.register(this);
