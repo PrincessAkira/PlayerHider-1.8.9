@@ -1,4 +1,4 @@
-package me.syfe.srp.util;
+package meow.emily.playerhider.util;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

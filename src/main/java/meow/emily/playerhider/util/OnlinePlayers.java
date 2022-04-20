@@ -1,6 +1,6 @@
-package me.syfe.srp.util;
+package meow.emily.playerhider.util;
 
-import me.syfe.srp.SRP;
+import meow.emily.playerhider.Emily;
 import net.minecraft.client.network.NetworkPlayerInfo;
 
 import java.util.ArrayList;
@@ -10,10 +10,10 @@ import java.util.List;
 public class OnlinePlayers {
     public static String[] getListOfPlayerUsernames() {
         String[] users = null;
-        Collection<NetworkPlayerInfo> players = SRP.mc.getNetHandler().getPlayerInfoMap();
+        Collection<NetworkPlayerInfo> players = Emily.mc.getNetHandler().getPlayerInfoMap();
         List<String> list = new ArrayList<String>();
         for (NetworkPlayerInfo info : players)
             list.add(info.getGameProfile().getName());
-        return list.<String>toArray(new String[0]);
+        return list.toArray(new String[0]);
     }
 }

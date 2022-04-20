@@ -1,4 +1,4 @@
-package me.syfe.srp.util;
+package meow.emily.playerhider.util;
 
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.entity.Entity;

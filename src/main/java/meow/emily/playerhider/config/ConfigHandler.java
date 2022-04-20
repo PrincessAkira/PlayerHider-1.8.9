@@ -1,18 +1,17 @@
-package me.syfe.srp.config;
+package meow.emily.playerhider.config;
 
 
-import java.io.File;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Loader;
 
+import java.io.File;
+
 public class ConfigHandler {
-    private static Configuration config = null;
-
-
     public static boolean renderPlayers;
     public static String playersToRender;
     public static String whitelistedPlayers;
+    private static Configuration config = null;
 
     public static void preInit() {
         File configFile = new File(Loader.instance().getConfigDir(), "PlayerHider.cfg");
@@ -37,14 +36,14 @@ public class ConfigHandler {
     }
 
     private static void syncConfig(boolean loadFromConfigFile, boolean readFieldsFromConfig) {
-        if(loadFromConfigFile)
+        if (loadFromConfigFile)
             config.load();
 
         Property propertyRenderPlayers = config.get(Configuration.CATEGORY_GENERAL, "renderPlayers", true);
         Property propertyPlayersToRender = config.get(Configuration.CATEGORY_GENERAL, "playersToRender", "");
-        Property propertyWhitelistedPlayers = config.get(Configuration.CATEGORY_GENERAL, "whitelistedPlayers", "");
+        Property propertyWhitelistedPlayers = config.get(Configuration.CATEGORY_GENERAL, "blacklistedPlayers", "");
 
-        if(readFieldsFromConfig) {
+        if (readFieldsFromConfig) {
             renderPlayers = propertyRenderPlayers.getBoolean();
             playersToRender = propertyPlayersToRender.getString();
             whitelistedPlayers = propertyWhitelistedPlayers.getString();
@@ -54,7 +53,7 @@ public class ConfigHandler {
         propertyPlayersToRender.set(playersToRender);
         propertyWhitelistedPlayers.set(whitelistedPlayers);
 
-        if(config.hasChanged())
+        if (config.hasChanged())
             config.save();
     }
 }
