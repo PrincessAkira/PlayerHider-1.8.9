@@ -2,7 +2,7 @@
 {
   "modid": "PH",
   "name": "PlayerHider",
-  "description": "A mod to blacklist Players from your vision (especially on GommeHD.net)",
+  "description": "A mod to blacklist Players from your vision (especially on GommeHD or Roxbot)",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://laby.net/@liebesschwur",
