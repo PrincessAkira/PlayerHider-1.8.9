@@ -2,15 +2,14 @@
 {
   "modid": "PH",
   "name": "PlayerHider",
-  "description": "A mod to blacklist Players from your vision",
-  "version": "3.0",
-  "mcversion": "1.8.9",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["Syfe", "Emily"],
+  "description": "A mod to blacklist Players from your vision (especially on GommeHD.net)",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://laby.net/@liebesschwur",
+  "updateUrl": "https://thicc-thighs.de/",
+  "authorList": ["Syfe", "liebesschwur (Emily)"],
   "credits": "Syfe for making the original Mod",
   "logoFile": "/logo.png",
-  "screenshots": [],
-  "dependencies": []
+  "screenshots": []
 }
 ]
