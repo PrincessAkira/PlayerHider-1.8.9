@@ -56,6 +56,11 @@ processResources {
    // }
 }
 
+wrapper {
+    gradleVersion = '4.10.3'
+    distributionUrl = distributionUrl.replace("bin", "all")
+}
+
 jar {
 }
 
