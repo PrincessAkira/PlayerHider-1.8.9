@@ -13,5 +13,11 @@ Default keybinds are as follows:
 Toggle Mod: V
 ```
 
+## Need Help
+
+- The Mod itself displaying none Players Added although players are added
+
+## Original Maker
+
 Original Mod:
 https://github.com/ItsSyfe/SRP
