@@ -15,7 +15,7 @@ public class ConfigHandler {
     public static String whitelistedPlayers;
 
     public static void preInit() {
-        File configFile = new File(Loader.instance().getConfigDir(), "SRP.cfg");
+        File configFile = new File(Loader.instance().getConfigDir(), "PlayerHider.cfg");
         config = new Configuration(configFile);
         syncFromFiles();
     }

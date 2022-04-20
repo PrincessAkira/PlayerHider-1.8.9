@@ -1,6 +1,7 @@
 package me.syfe.srp.events;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import me.syfe.srp.SRP;
 import me.syfe.srp.gui.SRPGui;
 import me.syfe.srp.util.TickScheduler;
 import me.syfe.srp.util.Utils;
@@ -21,7 +22,7 @@ public class SRPEventHandler {
             String[] whitelistedPlayers = ConfigHandler.whitelistedPlayers.split(",");
             EntityPlayer enPlayer = e.entityPlayer;
             if(!Utils.isNPC(enPlayer)){
-                e.setCanceled(true);
+                e.setCanceled(false);
                 for (int i = 0; i < localPlayersToRender.length; i++) {
                     if(localPlayersToRender[i].equals(enPlayer.getGameProfile().getName()) || enPlayer.equals(Minecraft.getMinecraft().thePlayer)) {
                         e.setCanceled(true);
@@ -43,15 +44,15 @@ public class SRPEventHandler {
             if(ConfigHandler.renderPlayers){
                 ConfigHandler.renderPlayers = false;
                 ConfigHandler.syncFromFields();
-                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(ChatFormatting.GREEN + "[SRP]" + ChatFormatting.RED + " Rendering players is now " + ChatFormatting.BOLD + "off"));
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" + " Rendering players is now " + ChatFormatting.BOLD + ChatFormatting.DARK_RED + "off"));
             } else {
                 ConfigHandler.renderPlayers = true;
                 ConfigHandler.syncFromFields();
-                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(ChatFormatting.GREEN + "[SRP]" + ChatFormatting.GREEN + " Rendering players is now " + ChatFormatting.BOLD + "on"));
+                Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("[" + ChatFormatting.AQUA + SRP.PREFIX + ChatFormatting.WHITE + "]" + " Rendering players is now " + ChatFormatting.BOLD + ChatFormatting.GREEN + "on"));
             }
         }
-        if(Keybinds.opengui.isPressed()){
-            TickScheduler.INSTANCE.schedule(0, () -> Minecraft.getMinecraft().displayGuiScreen(new SRPGui()));
-        }
+        //if(Keybinds.opengui.isPressed()){
+        //    TickScheduler.INSTANCE.schedule(0, () -> Minecraft.getMinecraft().displayGuiScreen(new SRPGui()));
+        //}
     }
 }
