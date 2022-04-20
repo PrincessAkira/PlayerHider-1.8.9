@@ -10,8 +10,8 @@ public class Keybinds {
 
     public static void register() {
         // Toggle Mod
-        togglesrp = new KeyBinding("key.toggleemily", Keyboard.KEY_NONE, "PlayerHider");
-        ClientRegistry.registerKeyBinding(togglesrp);
+        toggleemily = new KeyBinding("key.toggleemily", Keyboard.KEY_NONE, "PlayerHider");
+        ClientRegistry.registerKeyBinding(toggleemily);
 
         // opengui = new KeyBinding("key.opengui", Keyboard.KEY_NONE, "PlayerHider");
         // ClientRegistry.registerKeyBinding(opengui);
