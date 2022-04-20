@@ -34,7 +34,6 @@ public class SRP
         ConfigHandler.preInit();
         Keybinds.register();
     }
-
     @Mod.EventHandler
     public void load(FMLInitializationEvent event){
         MinecraftForge.EVENT_BUS.register(new SRPEventHandler());
